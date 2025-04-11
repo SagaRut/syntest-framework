@@ -35,6 +35,8 @@ export const defaultBabelOptions: TransformOptions = {
       "classProperties",
       "dynamicImport",
       "objectRestSpread",
+      "flow",
+      "typescript"
     ],
   },
   plugins: [],
