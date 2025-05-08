@@ -87,11 +87,11 @@ export class StatementPool {
 
         if (statement instanceof ConstantObject) {
           // use export identifier
-          type = statement.export.id;
+          type = statement.export?.id;
           this.objects.push(statement);
         } else if (statement instanceof ConstructorCall) {
           // use export identifier
-          type = statement.export.id;
+          type = statement.export?.id;
           this.constructors.push(statement);
         } else if (
           statement instanceof FunctionCall ||

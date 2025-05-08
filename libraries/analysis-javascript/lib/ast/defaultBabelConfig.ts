@@ -22,6 +22,7 @@ export const defaultBabelOptions: TransformOptions = {
   configFile: false,
 
   // "presets": ["@babel/preset-react"],
+  presets: ["@babel/preset-typescript"],
   babelrc: false,
   ast: true,
   sourceMaps: true,

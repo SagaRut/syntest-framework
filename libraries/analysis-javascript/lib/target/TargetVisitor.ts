@@ -165,9 +165,13 @@ export class TargetVisitor extends AbstractSyntaxTreeVisitor {
               // e.g. module.exports = class {}
               // e.g. module.exports = function {}
               // e.g. module.exports = () => {}
-              return "id" in parentNode.right
-                ? parentNode.right.id.name
-                : "anonymousFunction";
+              // TODO fix this to check if null or undefined
+              const right = parentNode?.right;
+              if (right && "id" in right && right.id?.name) {
+                return right.id.name;
+              } else {
+                return "anonymousFunction";
+              }
             }
             return assigned.property.name;
           } else {
