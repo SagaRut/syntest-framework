@@ -22,7 +22,6 @@ export const defaultBabelOptions: TransformOptions = {
   configFile: false,
 
   // "presets": ["@babel/preset-react"],
-  presets: ["@babel/preset-typescript"],
   babelrc: false,
   ast: true,
   sourceMaps: true,
@@ -35,8 +34,7 @@ export const defaultBabelOptions: TransformOptions = {
       "asyncGenerators",
       "classProperties",
       "dynamicImport",
-      "objectRestSpread",
-      "typescript"
+      "objectRestSpread"
     ],
   },
   plugins: [],
