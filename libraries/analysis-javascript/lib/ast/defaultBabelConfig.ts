@@ -29,7 +29,7 @@ export const defaultBabelOptions: TransformOptions = {
   comments: true,
   parserOpts: {
     allowReturnOutsideFunction: true,
-    sourceType: "script",
+    sourceType: "module",
     plugins: [
       "asyncGenerators",
       "classProperties",
