@@ -502,40 +502,43 @@ export class TargetVisitor extends AbstractSyntaxTreeVisitor {
           const objectTarget = <NamedSubTarget & Exportable>(
             this._subTargets.find((value) => value.id === objectId)
           );
+          if (objectTarget == undefined) {
+            path.skip();
+          } else {
+            const newTargetClass: ClassTarget = {
+              id: objectTarget.id,
+              type: TargetType.CLASS,
+              name: objectTarget.name,
+              typeId: objectTarget.id,
+              exported: objectTarget.exported,
+              renamedTo: objectTarget.renamedTo,
+              module: objectTarget.module,
+              default: objectTarget.default,
+            };
 
-          const newTargetClass: ClassTarget = {
-            id: objectTarget?.id,
-            type: TargetType.CLASS,
-            name: objectTarget?.name,
-            typeId: objectTarget?.id,
-            exported: objectTarget?.exported,
-            renamedTo: objectTarget?.renamedTo,
-            module: objectTarget?.module,
-            default: objectTarget?.default,
-          };
+            // replace original target by prototype class
+            this._subTargets[this._subTargets.indexOf(objectTarget)] =
+              newTargetClass;
 
-          // replace original target by prototype class
-          this._subTargets[this._subTargets.indexOf(objectTarget)] =
-            newTargetClass;
+            const constructorTarget: MethodTarget = {
+              id: objectTarget.id,
+              type: TargetType.METHOD,
+              name: objectTarget.name,
+              typeId: objectTarget.id,
+              methodType: "constructor",
+              classId: objectTarget.id,
+              visibility: "public",
+              isStatic: false,
+              isAsync:
+                "isAsync" in objectTarget
+                  ? (<Callable>objectTarget).isAsync
+                  : false,
+            };
 
-          const constructorTarget: MethodTarget = {
-            id: objectTarget?.id,
-            type: TargetType.METHOD,
-            name: objectTarget?.name,
-            typeId: objectTarget?.id,
-            methodType: "constructor",
-            classId: objectTarget?.id,
-            visibility: "public",
-            isStatic: false,
-            isAsync:
-              "isAsync" in objectTarget
-                ? (<Callable>objectTarget).isAsync
-                : false,
-          };
+            this._subTargets.push(constructorTarget);
 
-          this._subTargets.push(constructorTarget);
-
-          isMethod = true;
+            isMethod = true;
+          }
         }
       } else {
         path.skip();
