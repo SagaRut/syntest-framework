@@ -519,12 +519,12 @@ export class TargetVisitor extends AbstractSyntaxTreeVisitor {
             newTargetClass;
 
           const constructorTarget: MethodTarget = {
-            id: objectTarget.id,
+            id: objectTarget?.id,
             type: TargetType.METHOD,
-            name: objectTarget.name,
-            typeId: objectTarget.id,
+            name: objectTarget?.name,
+            typeId: objectTarget?.id,
             methodType: "constructor",
-            classId: objectTarget.id,
+            classId: objectTarget?.id,
             visibility: "public",
             isStatic: false,
             isAsync:
