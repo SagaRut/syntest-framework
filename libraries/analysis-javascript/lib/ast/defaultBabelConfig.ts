@@ -30,6 +30,7 @@ export const defaultBabelOptions: TransformOptions = {
   parserOpts: {
     allowReturnOutsideFunction: true,
     sourceType: "module",
+    strictMode: false,
     plugins: [
       "asyncGenerators",
       "classProperties",
