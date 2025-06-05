@@ -506,12 +506,12 @@ export class TargetVisitor extends AbstractSyntaxTreeVisitor {
           const newTargetClass: ClassTarget = {
             id: objectTarget?.id,
             type: TargetType.CLASS,
-            name: objectTarget.name,
-            typeId: objectTarget.id,
-            exported: objectTarget.exported,
-            renamedTo: objectTarget.renamedTo,
-            module: objectTarget.module,
-            default: objectTarget.default,
+            name: objectTarget?.name,
+            typeId: objectTarget?.id,
+            exported: objectTarget?.exported,
+            renamedTo: objectTarget?.renamedTo,
+            module: objectTarget?.module,
+            default: objectTarget?.default,
           };
 
           // replace original target by prototype class
