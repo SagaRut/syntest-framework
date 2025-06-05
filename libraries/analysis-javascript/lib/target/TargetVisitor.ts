@@ -167,11 +167,9 @@ export class TargetVisitor extends AbstractSyntaxTreeVisitor {
               // e.g. module.exports = () => {}
               // TODO fix this to check if null or undefined
               const right = parentNode?.right;
-              if (right && "id" in right && right.id?.name) {
-                return right.id.name;
-              } else {
-                return "anonymousFunction";
-              }
+              return right && "id" in right && right.id?.name
+                ? right.id.name
+                : "anonymousFunction";
             }
             return assigned.property.name;
           } else {
@@ -506,7 +504,7 @@ export class TargetVisitor extends AbstractSyntaxTreeVisitor {
           );
 
           const newTargetClass: ClassTarget = {
-            id: objectTarget.id,
+            id: objectTarget?.id,
             type: TargetType.CLASS,
             name: objectTarget.name,
             typeId: objectTarget.id,
