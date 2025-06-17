@@ -17,7 +17,6 @@
  */
 import * as crypto from "node:crypto";
 
-import { ImplementationError } from "@syntest/diagnostics";
 import { ExecutionResult, Trace } from "@syntest/search";
 
 export enum JavaScriptExecutionStatus {
@@ -94,16 +93,17 @@ export class JavaScriptExecutionResult implements ExecutionResult {
     const trace = this._traces.find((trace) => trace.id === id);
 
     if (!trace) {
-      if (id.startsWith("placeholder:::")) {
-        // TODO maybe this already fixed?
-        // TODO stupit hack because the placeholder nodes we add in the cfg are not being registred by the instrumentation
-        // should fix
-        return false;
-      }
+      // if (id.startsWith("placeholder:::")) {
+      //   // TODO maybe this already fixed?
+      //   // TODO stupit hack because the placeholder nodes we add in the cfg are not being registred by the instrumentation
+      //   // should fix
+      //   return false;
+      // }
+      return false;
 
-      throw new ImplementationError(
-        `Could not find a matching trace for the given id: ${id}`,
-      );
+      // throw new ImplementationError(
+      //   `Could not find a matching trace for the given id: ${id}`,
+      // );
     }
 
     return trace.hits > 0;

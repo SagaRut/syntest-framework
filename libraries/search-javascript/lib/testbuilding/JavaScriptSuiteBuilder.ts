@@ -66,13 +66,14 @@ export class JavaScriptSuiteBuilder {
           gatherAssertionData,
           sourceDirectory,
         );
+        console.log(decodedTest);
         const testPath = this.storageManager.store(
           [testDirectory],
           `test-${target.name}.spec.js`,
           decodedTest,
           !final,
         );
-
+        console.log(testPath);
         if (paths[testPath] !== undefined) {
           throw new ImplementationError("Should only be one of each path!");
         }
