@@ -66,14 +66,12 @@ export class JavaScriptSuiteBuilder {
           gatherAssertionData,
           sourceDirectory,
         );
-        console.log(target.path);
         const testPath = this.storageManager.store(
           [testDirectory],
-          `test-${target.name}.spec.js`,
+          `test-${target.path.replaceAll("/", "-")}.spec.js`,
           decodedTest,
           !final,
         );
-        // TODO change testPath to be what I expect in the validation when I compare filenames!
         if (paths[testPath] !== undefined) {
           throw new ImplementationError("Should only be one of each path!");
         }
