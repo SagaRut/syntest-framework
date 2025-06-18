@@ -66,8 +66,7 @@ export class JavaScriptSuiteBuilder {
           gatherAssertionData,
           sourceDirectory,
         );
-        console.log(testDirectory);
-        console.log(sourceDirectory);
+        console.log(target.path);
         const testPath = this.storageManager.store(
           [testDirectory],
           `test-${target.name}.spec.js`,
